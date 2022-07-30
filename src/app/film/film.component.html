@@ -1,0 +1,49 @@
+<mat-card class="filmcard">
+<div id="expandbox-content">
+<img mat-card-sm-image id="card-image" src="https://in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/{{image_url}}.jpg" alt="Loading">
+<span class="textinfo"><span id="filmtitle">{{name}}</span> {{film_censor}}<br>
+<span class="description">{{film_length}}<br>{{film_genre}}<br><br><span style="font-style:italic;">{{film_story}}</span></span>
+</span></div>
+</mat-card>
+
+<mat-card class="datacard">
+  <table  style="margin-left: auto;margin-right: auto;margin-top:10px;">
+    <tr>
+      <th style="width: 20%;">Date</th>
+      <th style="width: 10%;">Shows</th>
+      <th style="width: 10%;">Viewers</th>
+      <th style="width: 20%;">Percentage</th>
+      <th style="width: 20%;">Amount</th>
+    </tr>
+    <tr *ngFor="let films of singlefilm|async">
+      <td style="text-shadow: 0 0 1px currentColor;font-size: 16px;">{{films.show_date}}</td>
+      <td>{{films.showCount}}</td>
+      <td>{{films.booked_seats}}</td>
+      <td class="progressBar"><progress id="file"  value="{{((films.booked_seats/films.total_seats)*100).toFixed(2)}}" max="100"> </progress>  {{((films.booked_seats/films.total_seats)*100).toFixed(2)}}%</td>
+      <td style="text-shadow:0px 0px 1px currentColor; font-size: 16px;">₹{{films.price.toLocaleString('en-IN')}}</td>
+    </tr>
+    <tr>
+      <td colspan="4" style="text-align: right;">Total:</td>
+      
+      <td style="font-weight: bold; font-size: 18px;color: wheat;">₹{{dd.toLocaleString('en-IN')}}</td>
+    </tr>
+  </table>
+  </mat-card>
+
+
+<mat-card class="datacard">
+  <div >
+    
+ 
+<!--img mat-card-sm-image id="card-image" src="https://in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/{{image_url}}.jpg" alt="Loading">
+<div class="film-detail">
+    
+    Released on : {{release_date}}<br></div>
+
+<div class="film-data" style="height: 1400px;" >
+{{dd}}
+</div-->
+
+
+</div>
+</mat-card>

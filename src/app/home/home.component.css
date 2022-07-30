@@ -1,0 +1,71 @@
+
+.maincontainer {
+  padding-left: 10px;
+  background-color: inherit;
+  padding-right: 10px;
+ 
+}
+.sidenav{
+  background-color: inherit;
+  padding-right: 10px;
+}
+
+.filtercard{
+  background-color: #0a1929 ;
+  color: white;
+  margin-top: 25px;
+  width:200px
+}
+.list{
+display: flex;
+flex-wrap: wrap;
+flex-direction: column;
+}
+
+.cardtitle{
+  text-align: center;
+  font-size: 25px;
+   font-family: 'Merriweather', serif;
+   font-weight:bolder;
+   color: white;
+   margin-bottom: 40px;
+   margin-top: 20px;
+}
+#card-image {
+  max-width:100%;
+  max-height:100%;
+  height: auto;
+    opacity: 1;     
+  }
+
+  mat-grid-tile-footer{
+    min-height: 70px; 
+    font-family: 'Trebuchet MS', sans-serif;
+  }
+.maincard{
+  background-color: #0a1929 ;
+ margin-top: 25px;
+ width: 100%;
+ margin-bottom: 10px;
+}
+
+.mycard :hover{
+    opacity: 0.5;
+    
+    
+}
+
+
+
+a{
+text-decoration: none;
+color: white;
+}
+
+.test{
+  transform: scale(110%);
+}
+
+.test:hover{
+  transition: transform 1s;
+}

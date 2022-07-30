@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;1,700&display=swap');
+#card-image {
+    max-width: 200px;
+  }
+  #logo{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 5px;
+    margin-top: 50px;
+    border: 5px solid black;
+}
+.navbar{
+    margin-bottom: 10px;  
+    display:inline-flex;
+}
+
+
+  .secondToolbar {
+    position: fixed;
+    background: #eee;
+    top: 0; 
+    height: 0;
+    z-index:1;
+    opacity: 0;
+    transition: opacity .25s ease-out, height .15s ease;
+    cursor: default;
+    user-select: none;
+  }
+  .sticky {
+    height: 64px;
+    opacity: 1;
+    
+    transition: opacity .25s ease-out, height .15s ease;
+  } 
+.filmname{
+   display: inline;
+   font-size: 14px;
+   
+   font-family: 'Merriweather', serif;
+   font-weight: bold;
+
+}
+.mycard
+{
+  opacity: 1;
+  transition:opacity 5s ease-in-out;
+}
+
+.mycard :hover{
+    opacity: 0.5;
+}
+
+a{
+text-decoration: none;
+color: black;
+}
