@@ -1,5 +1,5 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  
+  isdisplay:boolean=false
+  searchData:any;
   constructor(private router: Router) { }
 
 
@@ -15,13 +16,29 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl(home);
   }
   ngOnInit(): void {
-
     
-
+    
+   
+    // console.log(search);
+    
   }
 
-  isSticky: boolean = false;
-  isFalse:boolean=false;
+  toggleMenu(){
+    let vv = document.getElementById("menuoptions");
+    if(vv!=null && this.isdisplay ==false)
+    {
+    vv.style.display = "flex";
+    this.isdisplay = true;
+    }
+    else if(vv!=null && this.isdisplay==true){
+      vv.style.display = "none"
+      this.isdisplay = false
+    }
+  }
+
+
+  isSticky: boolean = true;
+  isFalse:boolean=true;
   url:string="../../assets/logo.png";
 
   @HostListener('window:scroll', ['$event'])
@@ -37,5 +54,11 @@ export class NavbarComponent implements OnInit {
   }
     this.isSticky = window.pageYOffset >= 0;
   }
+
+  processAjaxData(event: Event){
+    this.searchData = (event.target as HTMLInputElement).value;
+    
+    // window.history.pushState({},"", "search="+data);
+}
 
 }

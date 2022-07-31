@@ -1,16 +1,18 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ObserversModule } from '@angular/cdk/observers';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, ErrorHandler, HostListener, OnInit } from '@angular/core';
+import { Component, ErrorHandler, HostListener, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
-import { catchError, expand, Observable,map, interval, of, EMPTY, throwError } from 'rxjs';
+import {MatTableDataSource} from '@angular/material/table';
+import { catchError, expand, Observable,map, interval, of, EMPTY, throwError, filter, Subscriber, observable, mergeMap } from 'rxjs';
 import { RestapiService } from '../restapi.service';
+import { isThisTypeNode } from 'typescript';
 export interface Post{
   film_id: string;
-  film_real_name:string
+  full_name:string;
   film_name:string;
   cover_url:string;
+  film_genre:string;
   film_loc:string;
   release_date:string;
 }
@@ -20,6 +22,11 @@ export interface Post{
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+
+
+  totalcols:number=10;
+  cols:number = 2;
+  rows:number = 3;
   posts!:Observable<Post[]>;
   errorMessage!: string;
   title = 'scrap-view';
@@ -28,11 +35,52 @@ export class HomeComponent implements OnInit {
   constructor(private restapiservice: RestapiService) { }
 
   ngOnInit(): void {
+    this.resposive();
+    
+    
     this.refreshData();
-    //this.interval = interval(5000).subscribe(() => { 
-        //this.refreshData(); 
-    //});
-    //window.scroll(0,0);
+    // window.addEventListener("resize", this.resposive);
+    // console.log("tcols",this.totalcols);
+    
+  }
+
+  resposive()
+  {
+    var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    //console.log("width",width);
+    
+    
+    if(width>900)
+    {
+     // console.log("entered: >900");
+      
+      this.totalcols=20;
+      this.cols = 4;
+      this.rows = 4;
+    }
+    else
+    if(width<=900 && width>500)
+    {
+     // console.log("entered: <=900 & >500");
+      this.totalcols = 6;
+      this.cols = 2;
+      this.rows = 3;
+    }
+    else if(width<=500 && width >300){
+     // console.log("entered: <=500 & >350");
+
+      this.totalcols = 4;
+      this.cols = 2;
+      this.rows = 3;
+    }
+    else if(width<=350)
+    {
+     // console.log("entered: <=350");
+
+      this.totalcols = 2
+      this.cols = 2;
+      this.rows = 3;
+    }
     
   }
 
@@ -41,7 +89,7 @@ export class HomeComponent implements OnInit {
     let checkBox = document.getElementById("year") as HTMLInputElement
     let checkBx2 = document.getElementById("year2") as HTMLInputElement
     let checkBx3 = document.getElementById("year3") as HTMLInputElement
-    console.log(filterYr);
+   // console.log(filterYr);
     if(checkBox.checked || checkBx2.checked || checkBx3.checked)
     {
       this.refreshData(filterYr)
@@ -50,46 +98,63 @@ export class HomeComponent implements OnInit {
       this.refreshData()
     }
   }
-  getData(fil = ""){
-    this.posts= this.restapiservice.getAllFilms().pipe
-    (map(posts=>
-    {
-      let i=0;
-      let arr=[];
-      let uniquearr:any={};
-      posts.forEach(item=>{
+  getData(fil = "", data:any){
+    let arr:any=[];
+    this.posts= this.restapiservice.getAllFilms().pipe(map(itt=>
+      {
+        if(data!=null){
+          return data;
+        }
+        while(arr.length>0){
+          arr.pop();
+        }
+        let i=0;
+        console.log("con",itt);
         
-        item.film_name = this.capitalizeFirstLetter(item.film_name)
-        let dateSplit = item.release_date.split('-')
-        item.release_date = dateSplit[2]+'-'+dateSplit[1]+'-'+dateSplit[0];
-         let objtitle=item['film_id'];
-         if(fil == dateSplit[0])
-         {
-         uniquearr[objtitle]=item;
-         }
-         else if(fil == "")
-         {
+        let uniquearr:any={};
+        itt.forEach(item=>{
+          let dateSplit = item.release_date.split('-')
+          item.release_date = dateSplit[2]+'-'+dateSplit[1]+'-'+dateSplit[0];
+          let objtitle=item['film_id'];
+          console.log(objtitle);
+          if(fil == dateSplit[0])
+          {
           uniquearr[objtitle]=item;
-         }
-        //console.log(uniquearr);
-          i++;   
-      })
-      for(let i in uniquearr){
-      arr.push(uniquearr[i]);}
+          }
+          else if(fil == "")
+          {
+            uniquearr[objtitle]=item;
+            console.log(objtitle);
+          }
+          
+          
+            i++;   
+        })
+        
+        for(let i in uniquearr)
+        {
+        arr.push(uniquearr[i]);
+        
+      }  
       return arr;
-    }));
+    }
+      ));
   }
-  refreshData(filYr = ""){
-    if(filYr != "")
-    {
-      this.getData(filYr)
-    }
-    else{
-      this.getData()
-    }
+
+    refreshData(filYr = ""){
+      
+      if(filYr != "")
+      {
+        
+        this.getData(filYr, null)
+      }
+      else{
+        
+        this.getData("",null)
+      }
     
     
-  }
+    }
   isSticky: boolean = false;
 
   @HostListener('window:scroll', ['$event'])
@@ -112,5 +177,20 @@ export class HomeComponent implements OnInit {
     return value;
   }
 
+  applyFilter(event: Event) {
+      const filterValue = (event.target as HTMLInputElement).value;
+    //  console.log(filterValue.toLowerCase());
+    // test.subscribe(res=> console.log("Each:",res))
+   //  console.log("post",this.posts);
+    
+    let test = this.restapiservice.getAllFilms()
+    .pipe(map(arr => arr.filter(r=>r.full_name.toLowerCase()
+    .match(filterValue.trim().toLowerCase()) || r.release_date.match(filterValue) || r.film_genre.toLowerCase().match(filterValue.toLowerCase()))))
+  let res = test.subscribe(res=>this.getData("", res))
+   
+  // res.unsubscribe()
+   
+
+}
 }
 export class CardFancyExample {}

@@ -8,7 +8,11 @@
     border: 5px solid #303d4a;
 
 }
-
+.menu-options{
+    padding: 0.5rem;
+    margin-right: 5rem;
+float: right;
+}
 
 .navibar{   
    background-color: #0a1929;
@@ -24,5 +28,71 @@
     z-index: 5;
 }
 
+.search-form{
+display: none;
+}
+
+.humicon{
+
+    display: none;
+}
+@media screen and (max-width:700px) { 
+
+    .navibar{
+        height: none;
+        padding: none;
+        display: flex;
+        
+    
+  
+    }
+    button{
+        background-color: #0a1929;
+    }
+
+    #logo{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin: 2px;
+        z-index: 3;
+        border: 4px solid #303d4a;
+    
+    }
+    .humicon{
+        
+        display: flex;
+        flex-direction: row;
+        margin-top: 0.5em;
+        margin-right: 0.5em;
+       float: right;
+       align-items: center;
+       justify-items: center;
+       margin-top: 20px;
+        right:0%;
+        border-radius: 0.13em;
+        
+        
+    }
+  .menu-options{
+    display:none;
+    flex-direction: column;
+    width: 100%;
+    animation: animfade 500ms;
+    margin-top: 60px;
+  }
+
+  @keyframes animfade {
+    from{
+    transform: translateY(-10%);
+    opacity: 0;
+    }
+    to{
+transform: translateY(0%);
+opacity: 1;
+    }
+  }
+
+}
 
 
