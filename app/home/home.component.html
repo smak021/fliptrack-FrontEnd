@@ -1,0 +1,62 @@
+<!--mat-progress-spinner mode="indeterminate"></mat-progress-spinner-->
+<mat-drawer-container class="maincontainer" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side">
+    <mat-card class="filtercard">Filters<br><br>
+      <span>Year</span>
+      <hr style="border-top: 0.5px solid white;">
+
+      <input type="radio" id="year4" name="radiofilter" (change)="chechBox('')"> All<br>
+      <input type="radio" id="year" name="radiofilter" (change)="chechBox('2022')"> 2022<br>
+      <input type="radio" name="radiofilter" id="year2" (change)="chechBox('2021')"> 2021<br>
+      <input type="radio" name="radiofilter" id="year3" (change)="chechBox('2020')"> 2020<br>
+      
+    </mat-card>
+  </mat-drawer>
+
+  <mat-card ngClass="maincard">
+    <div class="cardtitle">
+      <div>
+        <div style="float: left;">
+      <button mat-icon-button class="icon" style="float:left;color:white;" type="button" (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div><div class="icondiv" style="font-size: none;display: inline-flex;"><mat-icon>search</mat-icon></div>
+    <div style="display: inline-block;">
+        <input autocomplete="off" ngClass="search" matInput (keyup)="applyFilter($event)" placeholder="Movie name, genre, date" #input>
+      </div>
+      
+    </div>
+        <!-- <button class="material-symbols-outlined">
+          search
+        </button> -->
+      <br>
+      <!-- Films -->
+    </div>
+    <mat-grid-list ngClass="list" cols={{totalcols}} rowHeight="100px" >
+      <div class="noresult" *ngIf="(posts|async)?.length == 0 ">No result found</div>
+      <div class="noresult"  *ngIf="(posts|async) == null "><mat-spinner color='accent' style="text-align: center;"></mat-spinner></div>
+      <mat-grid-tile ngClass="mycard fade" style="margin-left: 5px;" *ngFor="let post of posts|async;" colspan={{cols}} rowspan={{rows}}>
+        <div class="image-card" >
+        
+        <a routerLink="/film/{{post.film_id}}">
+          
+          <img id="card-image"
+              src="https://in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/{{post.cover_url}}.jpg" alt="{{post.film_name}}">
+            
+            <br>
+           
+          <div class="foottext">
+        <mat-grid-tile-footer>{{post.full_name}}<br>
+          {{post.release_date}}</mat-grid-tile-footer>
+        </div>
+      
+      </a>
+          
+    
+    </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card>
+</mat-drawer-container>
+
+<h4 style="text-align: center;">© 2022 FlipTrack</h4>

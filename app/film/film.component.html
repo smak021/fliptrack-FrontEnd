@@ -1,0 +1,78 @@
+<div class="n-container">
+  <div class="left-block">
+<div class="detail-card" >
+  <mat-card class="filmcard">
+<div id="expandbox-content">
+  <div style="display: flex;flex-direction: row;">
+<img mat-card-sm-image id="card-image" src="https://in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/{{image_url}}.jpg" alt="Loading">
+<span class="textinfo"><span id="filmtitle">{{name}}</span> {{film_censor}}<br>
+{{film_length}}<br>{{film_genre}}<br>{{release_date}}
+</span>
+</div>
+<span style="margin-top: 20px;">{{film_story}}</span>
+</div>
+</mat-card>
+</div>
+</div>
+<div class="right-block" >
+  <div class="bottom">
+    <mat-card class="datacard">
+      <div >  
+    <div style="display: inline-block;text-align:center;"></div>
+    <div style="float: inline-end;text-align: center;display: block;font-size: 5em;padding: 10px;font-weight: bolder;color: cornsilk;">{{ddN}}</div>
+    <!-- <div class="cast-crew-container" *ngFor="let val of singlefilm|async;let i = index">
+      <div class="cast-block" style="display: flex; flex-wrap: wrap;">
+      Cast:{{i}}
+    <div style="padding-left: 5px;" *ngFor="let js of val.jsonCast['actors'].slice(0,3)">
+    {{js+" |"}}
+    </div>
+    </div>
+    <div class="crew-block">
+    <div>
+    {{"Directed by: "+val.jsonCast['crews'][0]}}
+    </div>
+    </div>
+    </div> -->
+    <!--img mat-card-sm-image id="card-image" src="https://in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/{{image_url}}.jpg" alt="Loading">
+    <div class="film-detail">
+        
+        Released on : {{release_date}}<br></div>
+    
+    <div class="film-data" style="height: 1400px;" >
+    {{dd}}
+    </div-->
+    
+    
+    </div>
+    </mat-card>
+    </div>
+<div class="data-card" >
+ 
+<mat-card class="datacard">
+  <h2 style="text-align: center;">Statistics</h2>
+  <table  style="margin-left: auto;margin-right: auto;margin-top:10px;">
+    <tr>
+      <th>Date</th>
+      <th >Shows</th>
+      <th >Viewers</th>
+      <th >Percentage</th>
+      <th >Amount</th>
+    </tr>
+    <tr [ngClass]="{'weekend':films.isWeekend}" *ngFor="let films of singlefilm|async">
+      <td  style="text-shadow: 0 0 1px currentColor;">{{films.show_date}}</td>
+      <td >{{films.showCount}}</td>
+      <td>{{films.booked_seats}}</td>
+      <td class="progressBar">{{((films.booked_seats/films.total_seats)*100).toFixed(2)}}%<progress id="file"  value="{{((films.booked_seats/films.total_seats)*100).toFixed(2)}}" max="100"> </progress>  </td>
+      <td style="text-shadow:0px 0px 1px currentColor;">₹{{films.price.toLocaleString('en-IN')}}</td>
+    </tr>
+    <tr>
+      <td colspan="4" style="text-align: right;">Total:</td>
+      
+      <td style="font-weight: bold; font-size: 1.5em;color: wheat;">₹{{dd.toLocaleString('en-IN')}}</td>
+    </tr>
+  </table>
+  </mat-card>
+</div>
+
+</div>
+</div>

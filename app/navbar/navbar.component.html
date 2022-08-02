@@ -1,0 +1,26 @@
+<div Class="navibar"  [ngClass]="{'mat-elevation-z5' : isFalse,'sticky': isSticky}">
+  <a routerLink=""><img id="logo" alt="logo" src="{{url}}"></a>
+  <sup>Beta</sup>
+  <mat-icon (click)="toggleMenu()"  class="humicon">menu</mat-icon>
+  <span id="menuoptions" class="menu-options">
+<button mat-button (click)="onSave('')">Home</button>
+<button mat-button >Track</button>
+<button mat-button [matMenuTriggerFor]="aboveMenu">About</button>
+<mat-menu #aboveMenu="matMenu" yPosition="below">
+  <button mat-menu-item>Contact Us</button>
+  <button mat-menu-item>About Us</button>
+</mat-menu>
+</span>
+
+<form class="search-form" style="color: white;float: right;margin-right: 10px;">
+  <mat-form-field style="color: white;" class="example-full-width" appearance="fill">
+    <mat-label style="color: white;">Search</mat-label>
+    <input id="searchitem" (keyup)="processAjaxData($event)" matInput #message maxlength="256" placeholder="Ex. I need help with...">
+    
+  </mat-form-field>
+</form>
+
+</div>
+
+
+
