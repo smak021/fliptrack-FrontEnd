@@ -33,6 +33,7 @@ td{
 }
 #expandbox-content{
   display: inline-flex; 
+  flex-direction: column;
 }
  #filmtitle{
     font-size: 25px;
@@ -61,6 +62,7 @@ td{
   display: flex;
   position: sticky;
   top: 40px;
+  max-width:35em;
   position: -webkit-sticky;
   z-index: 2;
   align-self: flex-start;

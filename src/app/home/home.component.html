@@ -34,7 +34,8 @@
     </div>
     <mat-grid-list ngClass="list" cols={{totalcols}} rowHeight="100px" >
       <div class="noresult" *ngIf="(posts|async)?.length == 0 ">No result found</div>
-      <mat-grid-tile ngClass="mycard fade" style="margin-left: 5px;" *ngFor="let post of posts|async" colspan={{cols}} rowspan={{rows}}>
+      <div class="noresult"  *ngIf="(posts|async) == null "><mat-spinner color='accent' style="text-align: center;"></mat-spinner></div>
+      <mat-grid-tile ngClass="mycard fade" style="margin-left: 5px;" *ngFor="let post of posts|async;" colspan={{cols}} rowspan={{rows}}>
         <div class="image-card" >
         
         <a routerLink="/film/{{post.film_id}}">

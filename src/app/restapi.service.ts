@@ -8,7 +8,7 @@ import { SingleFilm } from './film/film.component';
   providedIn: 'root'
 })
 export class RestapiService {
-  private REST_API_SERVER = "http://127.0.0.1:8000/api/films/";
+  private REST_API_SERVER = "http://flicktracks.herokuapp.com/api/films/";
   constructor(private httpClient: HttpClient) { }
 
   getAllFilms():Observable<Post[]> {
@@ -16,11 +16,11 @@ export class RestapiService {
   }
 
   getSingleFilm(url:any):Observable<SingleFilm[]>{
-    return this.httpClient.get<SingleFilm[]>("http://127.0.0.1:8000/api/test/"+url+"/");
+    return this.httpClient.get<SingleFilm[]>("http://flicktracks.herokuapp.com/api/test/"+url+"/");
   }
 
   getCompleteFilm(url:any):Observable<any>{
-    return this.httpClient.get<SingleFilm[]>("http://127.0.0.1:8000/api/data/"+url+"/");
+    return this.httpClient.get<SingleFilm[]>("http://flicktracks.herokuapp.com/api/data/"+url+"/");
   }
 
 }

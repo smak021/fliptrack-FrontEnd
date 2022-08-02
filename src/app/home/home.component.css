@@ -99,7 +99,7 @@ color: white;
 
 
 .fade{
-  animation: myanimation 1s ease-in-out;
+  animation: myanimation 300ms ease-in-out;
 }
 
 @keyframes myanimation {

@@ -3,14 +3,49 @@
 <div class="detail-card" >
   <mat-card class="filmcard">
 <div id="expandbox-content">
+  <div style="display: flex;flex-direction: row;">
 <img mat-card-sm-image id="card-image" src="https://in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/{{image_url}}.jpg" alt="Loading">
 <span class="textinfo"><span id="filmtitle">{{name}}</span> {{film_censor}}<br>
-<span class="description">{{film_length}}<br>{{film_genre}}<br>{{release_date}}<br><span style="font-style:italic;">{{film_story}}</span></span>
-</span></div>
+{{film_length}}<br>{{film_genre}}<br>{{release_date}}
+</span>
+</div>
+<span style="margin-top: 20px;">{{film_story}}</span>
+</div>
 </mat-card>
 </div>
 </div>
 <div class="right-block" >
+  <div class="bottom">
+    <mat-card class="datacard">
+      <div >  
+    <div style="display: inline-block;text-align:center;"></div>
+    <div style="float: inline-end;text-align: center;display: block;font-size: 5em;padding: 10px;font-weight: bolder;color: cornsilk;">{{ddN}}</div>
+    <!-- <div class="cast-crew-container" *ngFor="let val of singlefilm|async;let i = index">
+      <div class="cast-block" style="display: flex; flex-wrap: wrap;">
+      Cast:{{i}}
+    <div style="padding-left: 5px;" *ngFor="let js of val.jsonCast['actors'].slice(0,3)">
+    {{js+" |"}}
+    </div>
+    </div>
+    <div class="crew-block">
+    <div>
+    {{"Directed by: "+val.jsonCast['crews'][0]}}
+    </div>
+    </div>
+    </div> -->
+    <!--img mat-card-sm-image id="card-image" src="https://in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/{{image_url}}.jpg" alt="Loading">
+    <div class="film-detail">
+        
+        Released on : {{release_date}}<br></div>
+    
+    <div class="film-data" style="height: 1400px;" >
+    {{dd}}
+    </div-->
+    
+    
+    </div>
+    </mat-card>
+    </div>
 <div class="data-card" >
  
 <mat-card class="datacard">
@@ -38,22 +73,6 @@
   </table>
   </mat-card>
 </div>
-<div class="bottom">
-<mat-card class="datacard">
-  <div >  
-More Data
-<!--img mat-card-sm-image id="card-image" src="https://in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/{{image_url}}.jpg" alt="Loading">
-<div class="film-detail">
-    
-    Released on : {{release_date}}<br></div>
 
-<div class="film-data" style="height: 1400px;" >
-{{dd}}
-</div-->
-
-
-</div>
-</mat-card>
-</div>
 </div>
 </div>
