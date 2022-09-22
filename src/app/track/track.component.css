@@ -1,0 +1,112 @@
+mat-card{
+    background-color: #0a1929;
+    color: white;
+    margin: 90px 10px 10px 10px;
+}
+.title{
+    text-align: center;
+    width: 100%;
+    margin-bottom: 30px;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.mat-expansion-panel{
+    background-color:#0a1929 ;
+    color: white;
+    padding: 10px;
+  }
+  
+  ::ng-deep .mat-expansion-indicator::after {
+    color: white;
+    background-color:#0a1929 ;
+  }
+  .mat-expansion-panel-header-description {
+    color: rgb(183, 183, 183);
+    background-color: #0a1929;
+  }
+  .mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover{
+    background-color:#0a1929 ;
+  }
+
+.container{
+display: flex;
+padding: 0px;
+}
+.reldate{
+    padding: 10px;
+}
+.name{
+font-size: 1.5em;
+color: yellow;
+padding: 10px;
+}
+.filmdetails{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.filcover{
+    width: 80px;
+    height: 120px;
+}
+.total{
+    display: flex;
+align-items: center;
+font-weight: 500;
+flex-grow: 1;
+justify-content: center;
+font-size: 1.8em;
+padding: 10px;
+}
+.chart{
+
+   
+}
+#canvas-box{
+    display: flex;
+    /* flex-grow: 1; */
+    /* flex-shrink: 1; */
+}
+
+.expand-container{
+    display: flex;
+}
+
+.row-no{
+margin: 0px 20px;
+padding:10px
+}
+.amount{
+    margin: 0px 10px;
+    padding: 10px;
+}
+.date{
+    margin: 0px 10px;
+    padding:10px
+}
+
+
+@media screen and (max-width:850px) {
+    
+    .name{
+    font-size: 0.8em;
+    }
+    .total{
+        font-size: 0.9em;
+    }
+    .reldate{
+        font-size: 0.8em;
+    }
+    .filcover{
+        width: 40px;
+        height: 60px;
+    }
+    .canvas-box{
+        width: 100px;
+        height: 50px;
+    }
+    .title{
+font-size: 0.8em;
+    }
+}

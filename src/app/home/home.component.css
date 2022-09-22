@@ -5,6 +5,7 @@
   padding-left: 10px;
   background-color: inherit;
   padding-right: 10px;
+  margin-top: 4em;
  
 }
 .sidenav{
@@ -18,11 +19,11 @@
   margin-top: 25px;
   width:200px
 }
-.list{
+/* .list{
 display: flex;
 flex-wrap: wrap;
 flex-direction: column;
-}
+} */
 
 .cardtitle{
   text-align: center;
@@ -41,7 +42,6 @@ flex-direction: column;
   }
 
   mat-grid-tile-footer{
-    min-height: 70px; 
     font-family: 'Trebuchet MS', sans-serif;
   }
 .maincard{
@@ -58,25 +58,24 @@ flex-direction: column;
   scale: 100%;
   opacity: 1;
   border: 0;
-  transition: 300ms ease-in-out;
-}
-.image-card:hover{
-  /* transform-origin: top; */
-  z-index: 10;
-  border: 20px solid rgb(0, 0, 0);
-  /* transform: scale(110%); */
-  opacity: 0.5;
 }
 
-
-.mycard :hover{
-    /* opacity: 0.5;     */
-}
 
 .mycard{
   opacity: 1;
   height: 100%;
+  z-index: 0;
+  transition: transform 300ms ease-in-out;
+
 }
+
+.mycard:hover{
+    opacity: 0.5;    
+    transform: scale(90%) ;
+    z-index: 5;
+}
+
+
 
 a{
 text-decoration: none;
@@ -99,7 +98,7 @@ color: white;
 
 
 .fade{
-  animation: myanimation 300ms ease-in-out;
+  animation: myanimation 200ms ease-in-out;
 }
 
 @keyframes myanimation {
@@ -114,8 +113,8 @@ color: white;
 }
 
 .icondiv mat-icon{
-  font-size:100%;
-  margin-right: 0.8em;
+  font-size:110%;
+  margin-right: 0.2em;
   color: rgba(239, 239, 239, 0.342);
   
 }
@@ -128,6 +127,9 @@ color: white;
   background-position: 1px center;
     /* border: 1px solid rgba(204, 204, 204, 0.315); */
 }
+.hide{
+  display: none;
+}
 .noresult{
   font-family: 'Trebuchet MS', sans-serif;
   color: white;
@@ -135,20 +137,33 @@ color: white;
   width: 100%;
   padding: 5rem;
   text-align: center;
-
 }
 
+mat-spinner{
+  margin: 0 auto;
+  margin-top: 100px;
+}
 
+.mat-grid-tile-footer{
+  background: rgba(0,0,0,.60);
+  }
 
 @media screen and (max-width:700px) and (min-width:300px) { 
 
+
   .search{
 
-    font-size: 0.6em;
+    font-size: 0.4em;
+  }
+  .icondiv mat-icon{
+    font-size:80%;
+    margin-right: 0em;
+    color: rgba(239, 239, 239, 0.342);
+    
   }
 
   .noresult{
-    font-size: 0.6em; 
+    font-size: 1em; 
   }
   .filtercard{
     margin-top: 25px;
@@ -160,6 +175,14 @@ color: white;
      margin-bottom: 20px;
      margin-top: 10px;
   }
+
+  mat-spinner{
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+ 
+
+
 }
 @media screen and (max-width:300px) { 
 
@@ -168,10 +191,22 @@ color: white;
     font-size: 0.3em;
   }
   .noresult{
-    font-size: 0.3em; 
+    font-size: 0.5em; 
   }
   .filtercard{
     margin-top: 25px;
-    width:60px
+    width:60px;
+  }
+
+  mat-spinner{
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+
+  .icondiv mat-icon{
+    font-size:70%;
+    margin-right: 0em;
+    color: rgba(239, 239, 239, 0.342);
+    
   }
 }

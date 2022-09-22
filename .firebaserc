@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "flicktracks": {
+      "hosting": {
+        "scrap-view": [
+          "flicktracks"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "flicktracks"
+  }
+}

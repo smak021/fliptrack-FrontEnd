@@ -1,78 +1,162 @@
-<div class="n-container">
+<div class="n-container" *ngFor="let l of filmData" [@animationOption2]="dateData==null?'close':'open'">
+  
   <div class="left-block">
 <div class="detail-card" >
   <mat-card class="filmcard">
 <div id="expandbox-content">
-  <div style="display: flex;flex-direction: row;">
-<img mat-card-sm-image id="card-image" src="https://in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/{{image_url}}.jpg" alt="Loading">
-<span class="textinfo"><span id="filmtitle">{{name}}</span> {{film_censor}}<br>
+  <div style="display: flex;flex-direction: row;" *ngIf="image_url">
+<img mat-card-sm-image class="card-image" src="https://in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/{{image_url}}.jpg" alt="Loading">
+<span class="textinfo"><span class="filmtitle">{{name}}</span> {{film_censor}}<br>
 {{film_length}}<br>{{film_genre}}<br>{{release_date}}
 </span>
 </div>
 <span style="margin-top: 20px;">{{film_story}}</span>
 </div>
 </mat-card>
-</div>
-</div>
-<div class="right-block" >
-  <div class="bottom">
-    <mat-card class="datacard">
-      <div >  
-    <div style="display: inline-block;text-align:center;"></div>
-    <div style="float: inline-end;text-align: center;display: block;font-size: 5em;padding: 10px;font-weight: bolder;color: cornsilk;">{{ddN}}</div>
-    <!-- <div class="cast-crew-container" *ngFor="let val of singlefilm|async;let i = index">
-      <div class="cast-block" style="display: flex; flex-wrap: wrap;">
-      Cast:{{i}}
-    <div style="padding-left: 5px;" *ngFor="let js of val.jsonCast['actors'].slice(0,3)">
-    {{js+" |"}}
-    </div>
-    </div>
-    <div class="crew-block">
-    <div>
-    {{"Directed by: "+val.jsonCast['crews'][0]}}
-    </div>
-    </div>
-    </div> -->
-    <!--img mat-card-sm-image id="card-image" src="https://in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/{{image_url}}.jpg" alt="Loading">
-    <div class="film-detail">
-        
-        Released on : {{release_date}}<br></div>
-    
-    <div class="film-data" style="height: 1400px;" >
-    {{dd}}
-    </div-->
-    
-    
-    </div>
-    </mat-card>
-    </div>
-<div class="data-card" >
- 
-<mat-card class="datacard">
-  <h2 style="text-align: center;">Statistics</h2>
-  <table  style="margin-left: auto;margin-right: auto;margin-top:10px;">
-    <tr>
-      <th>Date</th>
-      <th >Shows</th>
-      <th >Viewers</th>
-      <th >Percentage</th>
-      <th >Amount</th>
-    </tr>
-    <tr [ngClass]="{'weekend':films.isWeekend}" *ngFor="let films of singlefilm|async">
-      <td  style="text-shadow: 0 0 1px currentColor;">{{films.show_date}}</td>
-      <td >{{films.showCount}}</td>
-      <td>{{films.booked_seats}}</td>
-      <td class="progressBar">{{((films.booked_seats/films.total_seats)*100).toFixed(2)}}%<progress id="file"  value="{{((films.booked_seats/films.total_seats)*100).toFixed(2)}}" max="100"> </progress>  </td>
-      <td style="text-shadow:0px 0px 1px currentColor;">₹{{films.price.toLocaleString('en-IN')}}</td>
-    </tr>
-    <tr>
-      <td colspan="4" style="text-align: right;">Total:</td>
+  <!-- start -->
+    <mat-accordion class="chart-card" mat-accordion >
+      <mat-expansion-panel [expanded]="panelOpenState" (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Chart
+          </mat-panel-title>
+          <mat-panel-description>
+            Tap to {{panelOpenState ? 'collapse' : 'expand'}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <canvas baseChart id="canvas-box"
+      [type]="'line'"
+      [data]="lineChartData"
+      [options]="lineChartOptions"
+      [legend]="lineChartLegend">
+    </canvas>
+        <!-- <p>This is the primary content of the panel.</p> -->
       
-      <td style="font-weight: bold; font-size: 1.5em;color: wheat;">₹{{dd.toLocaleString('en-IN')}}</td>
-    </tr>
-  </table>
-  </mat-card>
+      </mat-expansion-panel>
+      <!-- <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Self aware panel
+          </mat-panel-title>
+          <mat-panel-description>
+            Currently I am {{panelOpenState ? 'open' : 'closed'}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>I'm visible because I am open</p>
+      </mat-expansion-panel> -->
+    </mat-accordion>
+  
+  <!-- end -->
 </div>
 
 </div>
+
+<div class="right-block" >
+ 
+
+  <!-- <div class="total-data"> -->
+    <mat-card class="total-datacard">
+
+      <div class="left-data">
+        Days
+        <h1>{{total_days}}</h1>
+      </div>
+      <div class="left-data">
+        Shows
+        <h1>{{total_shows}}</h1>
+      </div>
+      <div class="middle-data">
+        Admits
+        <h1>{{total_percentage}}</h1>
+      </div>
+      <div class="right-data">
+        Total
+        <h1>{{ddN}}</h1>
+      </div>
+    </mat-card>
+  <!-- </div> -->
+  <!-- New Data Table -->
+  
+  <div class="stats-view">
+    <mat-card class="card-3">
+      
+      <mat-tab-group mat-align-tabs="center">
+        <mat-tab class="tabone-container" [aria-label]="tabs" label="Date">
+          
+          <div style="display: flex;flex-direction: column-reverse;">
+
+      <div class="stats-container" *ngFor="let films of dateData">
+       
+        <div class="date-row" style="display: flex;align-items: center;"><div class="date-box">{{films.date}}</div>
+        <span *ngIf="films.isWeekend" style="margin:0px 3px;font-weight: 500;" class="badge badge-pill badge-primary">Weekend</span>
+        <span *ngIf="films.isHoliday!='' " style="margin:0px 3px;font-weight: 500;" class="badge badge-pill badge-success">{{films.isHoliday}}</span>
+        <span *ngIf="films.isToday==true" style="margin:0px 3px;font-weight: 500;" class="badge badge-pill badge-light">Today</span>
+      </div>
+      <div  class="data-row" style="display: flex;color: white;">
+        <div class="show-box"><img class="img-logo" src="../../assets/icons/shows.png">{{films.shows}}</div>
+        <div class="viewer-box" ><img class="img-logo" src="../../assets/icons/audience.png">{{films.booked_seats}}</div>
+        <div class="percentage-box">
+          <!-- <p><ngb-progressbar [showValue]="true" type="danger" [value]="films.booked_seats/films.total_seats * 100" [max]="100"></ngb-progressbar></p> -->
+          <div class="progress-bar" >
+           <div class="progress-digit">{{((films.booked_seats/films.total_seats)*100).toFixed(2)}}%</div> 
+            <div class="progress-val" [style]="{'width':((films.booked_seats/films.total_seats)*100).toFixed(0)+'%'}"></div>
+          </div>
+        </div>
+        <div class="amount-box">₹{{films.total_amount.toLocaleString('en-IN')}}</div>
+      </div>
+    </div>
+  </div>
+    <span class="footer-total"><span style="writing-mode: tb-rl;transform: rotate(-180deg);;direction: ltr;color: white;font-size: 0.5em;font-weight: normal;">Total</span> ₹{{dd.toLocaleString('en-IN')}}</span>
+
+
+        </mat-tab>
+      <mat-tab label="Theatre" class="table-responsive">
+        <table class="table ">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Theatre</th>
+              <th scope="col">Shows</th>
+              <th scope="col">Admits</th>
+              <th scope="col">Area</th>
+              <th scope="col">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let row of theatredata; index as i">
+            
+            <th scope="row">{{ i + 1 }}</th>
+          
+            <td>
+              <div class="theatre-name" style="color: white;">{{row.theatre_name}}</div>
+            </td>
+            <td><div class="theatre">{{row.show_count}}</div></td>
+            <td><div class="theatre">{{row.booked_seats}}</div></td>
+            <td><div style="text-transform:capitalize;" class="theatre">{{row.theatre_location}}</div></td>
+            <td><div class="theatre-price">₹{{row.price}}</div></td>
+          </tr>
+          </tbody>
+        </table>
+
+      </mat-tab>
+      </mat-tab-group>
+      <mat-card-footer>
+        <mat-progress-bar mode="indeterminate" *ngIf="!(dateData)"></mat-progress-bar>
+      </mat-card-footer>
+
+    </mat-card>
+  </div>
+  <!-- Table end -->
+<!-- {{show_last_modified}} -->
 </div>
+
+</div>
+
+<footer *ngIf="dateData">
+  <app-footer></app-footer>
+</footer>
+
+
+

@@ -1,25 +1,38 @@
 <div Class="navibar"  [ngClass]="{'mat-elevation-z5' : isFalse,'sticky': isSticky}">
-  <a routerLink=""><img id="logo" src="{{url}}"></a>
-  <sup>Beta</sup>
-  <mat-icon (click)="toggleMenu()"  class="humicon">menu</mat-icon>
-  <span id="menuoptions" class="menu-options">
-<button mat-button (click)="onSave('')">Home</button>
-<button mat-button >Track</button>
-<button mat-button [matMenuTriggerFor]="aboveMenu">About</button>
-<mat-menu #aboveMenu="matMenu" yPosition="below">
-  <button mat-menu-item>Contact Us</button>
-  <button mat-menu-item>About Us</button>
-</mat-menu>
-</span>
-
+  <a style="cursor: pointer;" routerLink=""><img id="logo" alt="logo" src="{{url}}"></a>
+  <sup>Beta v1 | Testing</sup>
+  <span id="menuoptions" [ngClass]="{'collapse':collapseMenu,'shown':!collapseMenu,'menu-options':true}">
+    <button mat-button routerLink="/" (click)="collapseMenu = !collapseMenu">Home</button>
+    <button mat-button routerLink="topfive" (click)="collapseMenu = !collapseMenu">Top Five</button>
+    <button mat-button (click)="collapseMenu = !collapseMenu">About Us</button>
+  </span>
+  <mat-icon (click)="collapseMenu = !collapseMenu"  class="humicon" >menu</mat-icon>
+<!-- Search Building -->
 <form class="search-form" style="color: white;float: right;margin-right: 10px;">
   <mat-form-field style="color: white;" class="example-full-width" appearance="fill">
     <mat-label style="color: white;">Search</mat-label>
-    <input id="searchitem" (keyup)="processAjaxData($event)" matInput #message maxlength="256" placeholder="Ex. I need help with...">
+    <input style="color: white;" id="searchitem" (keyup)="search($event)" matInput #message maxlength="256" autocomplete="off" placeholder="Ex. I need help with...">
     
   </mat-form-field>
+<mat-card class="search-result" *ngIf="">
+  <div *ngIf="(films|async)!.length == 0"> No result found</div>
+  <mat-spinner style="display: flex;align-self: center;top:40%" *ngIf="!(films|async)"></mat-spinner>
+  <mat-card class="row" *ngFor="let item of films|async">
+    <div routerLink="film/{{item.film_id}}" class="container">
+    <div  class="image-holder">
+      <img style="width: 100%;height:100%" src ="https://in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/{{item.cover_url}}.jpg"> 
+    </div>
+    <div class="details">
+    <div class="title">{{item.full_name}}</div>
+    <div class="more">{{item.release_date}}</div>    
+  </div>
+</div>
+  </mat-card>
+  <mat-card class="row" *ngIf="resultLength>4">See More</mat-card>
+</mat-card>
+  
 </form>
-
+<!-- Search End -->
 </div>
 
 

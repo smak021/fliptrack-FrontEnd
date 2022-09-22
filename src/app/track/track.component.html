@@ -1,0 +1,69 @@
+
+<!-- <div class="out" style="display: flex;"> -->
+<mat-card class="card1">
+   <div class="title">Top 5 | {{from}} - {{to}}</div> 
+
+   <!-- <div style="font-size: 2em;text-align: center;margin:4em">Page Under Construction</div> -->
+   <div style="width: 100%;text-align: center;font-size: 1.2em;margin-bottom:20px" *ngIf="data?.length == 0">No data<br></div>
+
+   <div *ngFor="let item of data;index as i">
+
+
+
+      <mat-accordion >
+         <mat-expansion-panel>
+           <mat-expansion-panel-header style="height: 100%">
+             <mat-panel-title style="color: white;">
+               
+               <div class="container">
+                  <div style="display: flex;align-items: center;margin: 0px 20px;height: 100%;">{{i+1}}</div>
+               <div style="display: flex;flex-wrap: wrap;width:100%">
+                  <div style="display: flex;flex-grow: 1;height: auto;">
+                     <img class="filcover" src = "https://in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/{{item.cover_pic}}.jpg">
+                     <div class="film-details">
+                     <div class="name">{{item.film_name}}</div>
+                     <div class="reldate">Released on: {{item.release_date}}</div>
+                     </div>
+                  </div>
+                  <div class="chart">
+                     <canvas baseChart height="50" width="100" class="canvas-box"
+                        [type]="'line'"
+                        [data]="item.lineChartData"
+                        [options]="lineChartOptions"
+                        [legend]="lineChartLegend">
+                     </canvas>
+
+                  </div>
+                  <div class="total">₹ {{item.total.toLocaleString('en-IN')}}</div>
+               </div>
+            </div>
+             </mat-panel-title>
+           </mat-expansion-panel-header>
+            <div *ngFor="let val of item.dateData;index as j">
+               <div class="expand-container">
+                  <div class="row-no">{{j+1}}</div>
+            <div class="date">{{val.date}}</div>
+            <div class="amount">₹ {{val.total_amount.toLocaleString('en-IN')}}</div>
+            <div style="margin: 10px;height: 10px;" class="badge bg-primary"> {{(val.total_amount/item.total*100).toFixed(2)}}%</div>
+         </div>
+            </div>
+         </mat-expansion-panel>
+       </mat-accordion>
+<mat-divider style="border-bottom: 1px solid white;position: static;"></mat-divider>
+
+
+   
+     
+      <!-- Hidden -->
+      
+   </div>
+
+   <mat-card-footer>
+      <mat-progress-bar mode="indeterminate" *ngIf="!(data)"></mat-progress-bar>
+    </mat-card-footer>
+</mat-card>
+<!-- <mat-card style="width: 50%;">
+   Hello
+</mat-card> -->
+
+<!-- </div> -->

@@ -1,4 +1,3 @@
-
 #logo{
     width: 80px;
     height: 80px;
@@ -6,7 +5,20 @@
     margin: 5px;
     z-index: 3;
     border: 5px solid #303d4a;
-
+}
+mat-card{
+    color: white;
+    background-color:#0a1929
+}
+.menu-options{
+    display: block;
+}
+.mat-menu-item{
+    color: white;
+    background-color:#0a1929 ;
+}
+.mat-menu-item:hover{
+    color: black;
 }
 .menu-options{
     padding: 0.5rem;
@@ -21,11 +33,49 @@ float: right;
    padding-left: 20px;  
 }
 .sticky{
-    position:sticky;
+    width: 100%;
+    position:fixed;
     top:0;
     background-color: #0a1929;
     height: 60px; 
     z-index: 5;
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+.row{
+    display: flex;
+    margin:2px 5px;
+    flex-direction: row;
+    width: 100%;
+    padding: 3px;
+    min-height : 80px;
+    background-color: #0a1929;
+}
+.details
+{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+.search-result{
+    background-color: #444b52;
+    display: flex;
+    width: 580px;
+    padding: 10px;
+    min-height: 100px;
+    flex-direction: column;
+    /* border: 2px solid black; */
+    max-height:480px;
+}
+.image-holder{
+    top: 0;
+    border: 1px solid black;
+    width: 120px;
+    min-height:80px
 }
 
 .search-form{
@@ -37,17 +87,32 @@ display: none;
     display: none;
 }
 @media screen and (max-width:700px) { 
+.collapse{
+    display: none;
+}
+.shown{
+    display: flex;
+}
+.menu-options{
+    flex-direction: column;
+    width: 100%;
+    animation: animfade 500ms;
+    margin-top: 60px;
+  }
 
     .navibar{
         height: none;
         padding: none;
         display: flex;
-        
-    
-  
+    }
+
+    sup{
+        top: 20%;
+        font-size: 0.6em;
     }
     button{
         background-color: #0a1929;
+        border-radius: 0%;
     }
 
     #logo{
@@ -62,7 +127,7 @@ display: none;
     .humicon{
         
         display: flex;
-        flex-direction: row;
+        position: absolute;
         margin-top: 0.5em;
         margin-right: 0.5em;
        float: right;
@@ -74,13 +139,7 @@ display: none;
         
         
     }
-  .menu-options{
-    display:none;
-    flex-direction: column;
-    width: 100%;
-    animation: animfade 500ms;
-    margin-top: 60px;
-  }
+
 
   @keyframes animfade {
     from{

@@ -1,11 +1,4 @@
 
-
-
-th,td{
-  border-bottom: 0.1px solid gray;
-  text-align: center;
-  
-}
 tr:hover{
  
   background-color: #1f3752;
@@ -18,119 +11,380 @@ th{
   font-size: 16px;
 }
 
-td{
-  
- 
-  height: 40px;
-}
-.textinfo{ 
-
- color: rgb(255, 255, 255);
- 
-}
-#description{
-  line-height: 30px;
-}
-#expandbox-content{
-  display: inline-flex; 
-  flex-direction: column;
-}
- #filmtitle{
+ .filmtitle{
     font-size: 25px;
     font-weight: bold;
     color: yellow;
    font-family: 'Merriweather', serif;
  } 
 
-#card-image{
+.card-image{
   
      width: 130px;
      margin-right: 20px;
+     margin-bottom: 10px;
      height: 150px;
      border:1px solid white;
      object-fit: cover;
 }
-.datacard{
+
+.mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover{
+  background-color:#0a1929 ;
+}
+
+.mat-expansion-panel-header-title {
+  color: white;
+}
+
+#canvas-box{
+  width:100%;
+  height: 500px;
+   /* height:300px; */
+}
+.mat-expansion-panel{
+  width: 400px;
   background-color:#0a1929 ;
   color: white;
-  margin-top: 10px;
-  margin-left: 0.5rem;
-  width: 100%;
-  margin-right: 0.5rem;
 }
+
+::ng-deep .mat-expansion-indicator::after {
+  color: white;
+  background-color:#0a1929 ;
+}
+.mat-expansion-panel-header-description {
+  color: rgb(183, 183, 183);
+  background-color: #0a1929;
+}
+
+.chart-card{
+  margin: 0 0.5em;
+
+  /* align-self: flex-start; */
+  /* height: auto; */
+}
+
 .detail-card{
   display: flex;
   position: sticky;
   top: 40px;
-  max-width:35em;
+  flex-direction: column;
+  max-width:fit-content;
   position: -webkit-sticky;
   z-index: 2;
   align-self: flex-start;
   height: auto;
-  /* display: flex;
-  position: sticky;
-  top: 40px;
-  
-  z-index: 2; */
 }
-.data-card{
-   /* */
-  display: inline-block;
-  
-}
+
 .left-block{
   display: flex;
   flex-direction: column;
 }
 .right-block{
-  flex-wrap: wrap;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  margin: 10px;
- 
-  /* flex-grow: 2;
-display: flex;
-flex-direction: column; */
 }
-.bottom{
-/* display: flex; */
-}
+
 .n-container{
-  /* display: flex;
-flex-wrap: wrap; */
-flex-wrap: wrap;
 display: flex;
-justify-content: space-around;
 flex-direction: row;
+margin-top: 3em;
 }
 .filmcard{
-  width: 100%;
   background-color:#0a1929 ;
   color: white;
   margin-top: 25px;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
-  margin-bottom: 20px;
-}
-
-.progressBar{
-
-}
-progress{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
+  margin-bottom: 10px;
+  flex-grow: 1;
 }
 
 .weekend{
-  border: 2px solid white;
-  border-radius: 20px;
+  background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+  font-size: 1em;
+  color: white;
+  width: fit-content;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 30px;
+  text-align: center;
+}
+table{
+  width: 100%;
 }
 
-.datacard td{
-  padding: 1em;
-  font-size: 1.1em;
+.right-data{
+  width: 50%;
+  text-align: center;
+}
+.left-data{
+  width: 40%;
+  text-align: center;
+  border-right: 1px solid #707070;
 }
 
+h1{
+  font-weight: 800;
+  font-size: 2.5em;
+  color: cornsilk;
+}
+.middle-data{
+  width: 60%;
+  text-align: center;
+  border-right: 1px solid #707070;
+}
+mat-card{
+  background-color: #0a1929;
+  color: white;
+}
+.total-datacard{
+  width: -webkit-fill-available;
+  color: white;
+  margin: 10px ;
+  font-family: 'Merriweather', serif;
+  display: flex;
+  z-index: 3;
+  flex-direction: row;
+  position: sticky;
+  top: 5em;
+  align-self: flex-start;
+  height: auto;
+
+}
+.stats-view{
+  font-family: 'Merriweather', serif;
+  margin: 20px 10px;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1;}
+  90% { opacity: 0.1;}
+  100% { opacity: 0;}
+}
+.date-box{
+  color: black;
+  font-size: 1em;
+  width: fit-content;
+  background-color: cornsilk;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 30px;
+  text-align: center;
+}
+
+.data-row{
+
+  margin: 10px 0px;
+}
+
+.show-box{
+  width: 50%;
+  margin: 10px 10px;
+  font-size: 2em;
+  text-align: center;
+}
+.viewer-box{
+width: 60%;
+margin: 10px 10px;
+font-size: 2em;
+}
+.percentage-box{
+  
+width:50%;
+}
+.progress-bar{
+  position: relative;
+  background-color: white;
+  width: 100%;
+  height: 50%;
+  border-radius: 30px;
+  margin-top: 10px;
+  color: black;
+}
+.progress-digit{
+  color: black;
+  z-index: 2;
+}
+.progress-val{
+  
+  width: 100%;
+  text-align: center;
+  background-color: wheat;
+  border: 0px;
+  position: absolute;
+  height: 100%;
+}
+.amount-box{
+  text-align: center;
+width: 50%;
+margin: 10px 10px;
+font-size: 2em;
+
+}
+
+.stats-container{
+  border-bottom: 1px solid #707070;
+  margin-top: 10px;
+  transition: all 200ms;
+}
+.stats-container:hover{
+  background-color: #73777b4e;
+  cursor: pointer;
+  transform: translateY(-10%);
+  transform-origin: bottom;
+}
+.footer-total{
+  box-sizing: border-box;
+  display: flex;
+  color:khaki;
+  font-size: 2em;
+  font-weight: 600;
+  padding: 10px;
+  justify-content: flex-end;
+}
+.card-3{
+  margin-bottom: 10px;
+}
+
+.skeleton-date{
+
+  background-color: #707070;
+  width: 10%;
+  height: 20px;
+  border-radius: 30px;
+}
+
+.fade-in{
+  animation: fade 200ms ease-in-out;
+}
+
+@keyframes fade {
+
+  from{
+    opacity: 0;
+  }
+  to{
+    
+    opacity: 1;
+  }
+  
+}
+td,th{
+border: none;
+}
+tr{
+  text-align: center;
+}
+.theatre{
+  font-size: 1em;
+  color: white;
+}
+.theatre-name{
+  font-size: 1em;
+}
+
+::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label {
+ color: white;
+  }
+
+.theatre-price{
+  font-weight: 500;
+  font-size: 1.2em;
+  color: wheat;
+}
+.mat-tab-label-active{
+  color: white;
+}
+.theatre-container{
+  display: flex;
+  padding: 10px;
+
+}
+.img-logo{
+  width: 30px;
+  height: 30px;
+  padding-bottom: 5px;
+  margin-right: 3px;
+}
+
+
+@media screen and (max-width:800px) and (min-width:300px) { 
+
+  .mat-expansion-panel{
+    width: 100%;
+  }
+
+
+  .stats-view{
+    margin-top:0px;
+    margin-bottom: 10px;
+  }
+
+  .img-logo{
+    width: 25px;
+    height: 25px;
+  }
+  .detail-card{
+    max-width: 100%;
+  }
+  table th{
+   padding: 5px;
+   font-size: 0.8em;
+  }
+
+  h1{
+    font-size: 1.5em;
+  }
+
+  .amount-box,.show-box,.viewer-box,.footer-total{
+    font-size: 1em;
+  }
+  .theatre{
+    font-size: 0.8em;
+  }
+  .footer{
+    bottom: 0%;
+  display: relative;
+  width: 100%;
+  }
+  .theatre-name{
+    font-size: 0.8em;
+  }
+  .theatre-price{
+    font-weight: 400;
+    font-size: 1em;
+  }
+
+  .n-container
+  {
+  display: block;
+  }
+
+}
+@media screen and (max-width:300px) { 
+
+  .n-container
+  {
+  display: block;
+  }
+
+  table th,td{
+    font-size: 0.6em;
+   }
+
+   .detail-card{
+    max-width: 100%;
+  }
+  h1{
+    font-size: 1em;
+  }
+
+  .amount-box,.show-box,.viewer-box{
+    font-size: 1em;
+  }
+  .mat-expansion-panel{
+    width: 100%;
+  }
+
+}

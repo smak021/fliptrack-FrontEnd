@@ -13,7 +13,7 @@
     </mat-card>
   </mat-drawer>
 
-  <mat-card ngClass="maincard">
+  <mat-card  ngClass="maincard">
     <div class="cardtitle">
       <div>
         <div style="float: left;">
@@ -32,10 +32,20 @@
       <br>
       <!-- Films -->
     </div>
-    <mat-grid-list ngClass="list" cols={{totalcols}} rowHeight="100px" >
-      <div class="noresult" *ngIf="(posts|async)?.length == 0 ">No result found</div>
-      <div class="noresult"  *ngIf="(posts|async) == null "><mat-spinner color='accent' style="text-align: center;"></mat-spinner></div>
-      <mat-grid-tile ngClass="mycard fade" style="margin-left: 5px;" *ngFor="let post of posts|async;" colspan={{cols}} rowspan={{rows}}>
+    <mat-grid-list  ngClass="list" rowHeight="1:1.51" [cols]="cols" (window:resize)="resposive()" >
+       <div ngClass="noresult" [style]="{'display': is_result}" >No result found</div>
+<!-- Maintenance part -->
+       <!-- <div style="color: wheat;text-align: center;margin-top: 100px;font-weight: 500;font-size: 2em;" class="noresult-spinner"  *ngIf="(films|async) != null ">
+        <img style="width: 80px;height: 80px;margin: 20px;" src="../../assets/icons/warning.png"><br>
+        Website Under Maintenance<br><br>
+        <h4>Will be back soon</h4>
+         <mat-spinner diameter={{spinner_diameter}} color='accent' >
+        </mat-spinner>
+        </div> -->
+<!-- End maintenance -->
+      <mat-grid-tile ngClass="mycard fade" style="margin-left: 5px;height:calc(0vh - 24px);" *ngFor="let post of films" >
+        
+       
         <div class="image-card" >
         
         <a routerLink="/film/{{post.film_id}}">
@@ -44,19 +54,35 @@
               src="https://in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/{{post.cover_url}}.jpg" alt="{{post.film_name}}">
             
             <br>
-           
+            <mat-grid-tile-header style="background: rgba(0,0,0,.60)">
+              {{post.full_name}}
+            </mat-grid-tile-header>
           <div class="foottext">
-        <mat-grid-tile-footer>{{post.full_name}}<br>
-          {{post.release_date}}</mat-grid-tile-footer>
+        <mat-grid-tile-footer style="flex-direction: column;justify-content: center;background: rgba(0,0,0,.60);">
+          {{post.release_date}}
+          <div class="chip" style="display: flex;">
+       <div *ngIf="post.dateDiff>0">
+        <div class="badge badge-pill badge-success" style="font-weight: 500;">Upcoming</div>
+       <div class="badge badge-pill badge-success" style="font-weight: 500;margin-left: 5px;">{{post.dateDiff}} Day<span *ngIf="post.dateDiff>1">s</span></div>
+      </div>
+      <div class="badge badge-pill bg-danger" style="font-weight: 500;margin-left: 5px;text-transform:capitalize;" *ngIf="post.film_status!='active'">{{post.film_status}}</div>
+      <!-- <div class="badge badge-pill bg-success" style="font-weight: 500;margin-left: 5px;text-transform:capitalize;" *ngIf="post.top!=0">Top {{post.top}}</div> -->
+    </div> 
+      </mat-grid-tile-footer>
+       
         </div>
       
       </a>
-          
-    
+     
+      
     </div>
+    
       </mat-grid-tile>
+      
     </mat-grid-list>
   </mat-card>
 </mat-drawer-container>
 
-<h4 style="text-align: center;">© 2022 FlipTrack</h4>
+<footer>
+    <app-footer></app-footer>
+</footer>
